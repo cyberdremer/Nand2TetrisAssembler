@@ -1,10 +1,12 @@
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class Code {
     HashMap<String, String> compMnemonics = new HashMap<>();
     HashMap<String, String> destMnemonics = new HashMap<>();
 
     HashMap<String, String> jumpMnemonics = new HashMap<>();
+    String comp,jump,dest, byteInstruction;
 
 
     Code(){
@@ -59,21 +61,65 @@ public class Code {
         jumpMnemonics.put("JLE","110");
         jumpMnemonics.put("JMP","111");
 
-        void dest(){
+
+
+
+
+
+
+
+
+
+
+    }
+
+    public void dest(String mnemonics){
+        if(destMnemonics.containsKey(mnemonics)){
+            dest = destMnemonics.get(mnemonics);
 
         }
-        void comp(){
+        else {
+            dest = "";
+        }
+    }
+
+
+    public void comp(String mnemonics){
+        if (compMnemonics.containsKey(mnemonics)){
+            comp = compMnemonics.get(mnemonics);
 
         }
-        void jump{
+        else{
+            comp = "";
+        }
+    }
+
+    public void jmp(String mnemonics){
+        if (jumpMnemonics.containsKey(mnemonics)){
+            jump = jumpMnemonics.get(mnemonics);
+
+        }
+        else{
+            jump = "";
+        }
+    }
+
+
+    public String instructionConversion(CommandType c, String instruction){
+        if (c.equals(CommandType.C_COMMAND)){
+            return "111" + dest + comp + jump;
+
+        }
+        else if (c.equals(CommandType.A_COMMAND)){
+
 
         }
 
+    }
 
-
-
-
-
+    private String convertAddress(String address){
+        String bin;
+        String pad = "0";
 
 
 
