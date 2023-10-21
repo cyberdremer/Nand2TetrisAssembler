@@ -32,15 +32,22 @@ public class Parser {
     }
     public void advance() throws IOException {
         String line;
-        while (true){
+        while( true ) {
             line = br.readLine();
-            if(line == null){
-                br.close();
-                command = null;
-
+            if( line == null ) {
+                try {
+                    if( br != null ) {
+                        br.close();
+                        command = null;
+                    }
+                } catch( IOException ex ) {
+                    ex.printStackTrace();
+                } finally {
+                    break;
+                }
             }
-           line = line.replaceAll("\\s", "").replaceAll("//", "");
-            if (line.length() != 0 ){
+            line = line.replaceAll( "\\s","" ).replaceAll( "//.*", "" );
+            if( line.length() != 0 ) {
                 command = line;
                 break;
             }
@@ -48,7 +55,7 @@ public class Parser {
     }
     String symbol(){
         //If there is no @ symbol then assume some sort of label
-        if(command.indexOf('@') == -1){
+        if(!command.contains("@")){
             return command.replaceAll("\\(", "").replaceAll("\\)", "");
         }
         else {
@@ -60,7 +67,7 @@ public class Parser {
 
     String jump(){
         //If no ';' found then assume a dud
-        if (command.indexOf(';') == -1){
+        if (!command.contains(";")){
             return "";
         }
         else{
@@ -78,7 +85,7 @@ public class Parser {
 
     }
     String dest(){
-        if (command.indexOf("=") == -1){
+        if (!command.contains("=")){
             return "";
         }
         else {
@@ -86,5 +93,9 @@ public class Parser {
         }
 
 
+    }
+
+    String getCommand(){
+        return command;
     }
 }

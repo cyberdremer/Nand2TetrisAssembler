@@ -73,57 +73,43 @@ public class Code {
 
     }
 
-    public void dest(String mnemonics){
+    public String dest(String mnemonics){
         if(destMnemonics.containsKey(mnemonics)){
             dest = destMnemonics.get(mnemonics);
+            return dest;
 
         }
         else {
-            dest = "";
+            return null;
         }
     }
 
 
-    public void comp(String mnemonics){
+    public String comp(String mnemonics){
         if (compMnemonics.containsKey(mnemonics)){
             comp = compMnemonics.get(mnemonics);
+            return comp;
 
         }
         else{
-            comp = "";
+            return null;
         }
     }
 
-    public void jmp(String mnemonics){
+    public String jmp(String mnemonics){
         if (jumpMnemonics.containsKey(mnemonics)){
             jump = jumpMnemonics.get(mnemonics);
+            return jump;
 
         }
         else{
-            jump = "";
+            return null;
         }
     }
 
 
-    public String instructionConversion(CommandType c, String instruction){
-        if (c.equals(CommandType.C_COMMAND)){
-            return "111" + dest + comp + jump;
-
-        }
-        else if (c.equals(CommandType.A_COMMAND)){
 
 
-        }
-
-    }
-
-    private String convertAddress(String address){
-        String bin;
-        String pad = "0";
-
-
-
-    }
 
 
 
